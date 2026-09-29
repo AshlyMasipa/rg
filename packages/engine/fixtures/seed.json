@@ -1,0 +1,72 @@
+{
+  "schools": [
+    { "id": "school-thabo", "name": "Thabo Secondary", "lat": -26.202, "lng": 27.998, "synthetic": true },
+    { "id": "school-lerato", "name": "Lerato High", "lat": -26.19, "lng": 28.01, "synthetic": true },
+    { "id": "school-ridgeview", "name": "Ridgeview Combined", "lat": -26.25, "lng": 28.05, "synthetic": true }
+  ],
+  "fields": [
+    {
+      "id": "field-orlando", "name": "Orlando Field", "lat": -26.21, "lng": 27.99,
+      "capacity": 40, "cost_per_session": 350,
+      "availability": [{ "day": "tue", "start": "14:00", "end": "18:00" }]
+    },
+    {
+      "id": "field-central", "name": "Central Grounds", "lat": -26.26, "lng": 28.06,
+      "capacity": 60, "cost_per_session": 500,
+      "availability": [{ "day": "tue", "start": "14:00", "end": "18:00" }]
+    }
+  ],
+  "coaches": [
+    {
+      "id": "coach-naidoo", "name": "Naidoo", "credentials": ["U16", "safeguarding"],
+      "availability": [{ "day": "tue", "start": "15:00", "end": "17:00" }],
+      "home_lat": -26.205, "home_lng": 27.995, "max_travel_km": 15, "cost_per_session": 300
+    },
+    {
+      "id": "coach-dlamini", "name": "Dlamini", "credentials": ["U16"],
+      "availability": [{ "day": "tue", "start": "15:00", "end": "17:00" }],
+      "home_lat": -26.208, "home_lng": 28.0, "max_travel_km": 15, "cost_per_session": 280
+    },
+    {
+      "id": "coach-mokoena", "name": "Mokoena", "credentials": ["U16", "safeguarding"],
+      "availability": [
+        { "day": "wed", "start": "15:00", "end": "17:00" },
+        { "day": "fri", "start": "15:00", "end": "17:00" }
+      ],
+      "home_lat": -26.22, "home_lng": 28.02, "max_travel_km": 10, "cost_per_session": 300
+    }
+  ],
+  "kits": [
+    { "id": "kit-1", "description": "8-ball kit", "ball_count": 8, "available": true },
+    { "id": "kit-2", "description": "4-ball kit", "ball_count": 4, "available": true }
+  ],
+  "transport": [
+    {
+      "id": "transport-1", "provider": "Local Minibus", "seats": 20, "cost_per_trip": 200,
+      "availability": [{ "day": "tue", "start": "14:00", "end": "18:00" }]
+    },
+    {
+      "id": "transport-2", "provider": "School Van", "seats": 12, "cost_per_trip": 150,
+      "availability": [{ "day": "thu", "start": "14:00", "end": "18:00" }]
+    }
+  ],
+  "sponsors": [
+    { "id": "sponsor-women-rugby", "sponsor": "Women in Rugby Fund", "remaining": 20000, "priorities": ["female-participation"] },
+    { "id": "sponsor-general", "sponsor": "General Development Fund", "remaining": 15000, "priorities": [] }
+  ],
+  "bookings": [],
+  "needs": {
+    "demo": {
+      "id": "need-1", "school_id": "school-thabo", "age_group": "U16", "gender": "girls",
+      "participants": 28, "days": ["tue"], "start_time": "15:00", "end_time": "17:00",
+      "needs": { "field": true, "coach": true, "balls": 6, "transport": false },
+      "weeks": 8, "status": "Unmet"
+    },
+    "unmatchable": {
+      "id": "need-3", "school_id": "school-ridgeview", "age_group": "U16", "gender": "boys",
+      "participants": 20, "days": ["thu"], "start_time": "15:00", "end_time": "17:00",
+      "needs": { "field": true, "coach": true, "balls": 4, "transport": false },
+      "weeks": 8, "status": "Unmet"
+    }
+  }
+}
