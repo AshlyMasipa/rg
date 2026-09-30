@@ -84,3 +84,44 @@ literally watch change live.
 *Update this file rather than deleting entries once resolved — mark
 them RESOLVED with the decision, don't remove, so the reasoning
 trail survives past the hackathon.*
+---
+
+## Decisions from A (2026-09-30)
+
+### #1 Double-booking: RESOLVED, option (c): A joins before calling solve()
+`apps/server/src/lib/world.ts → loadBookings()` joins
+assignments → opportunity_bundles → community_needs and passes
+`world.bookings` with `field_id`, `coach_id`, `days`, `start_time`,
+`end_time` filled in for every Approved/Active programme (Delivered
+programmes free their slots). **No schema change.** The optional
+fields on B's `Assignment` type are now always populated by the
+server, so they can be made required whenever B likes. The shared
+type is `Booking` in `packages/shared/src/types.ts`. The server also
+re-checks at approval time, in case another programme was approved
+between solve and approve (409, "re-solve the need").
+
+### #2 Travel distance: RESOLVED for the MVP, keep B's reading
+`coach.max_travel_km` gates coach→field, as implemented. There is no
+school→field limit in the MVP: the seed keeps every field within
+~10 km of every school, so it can't produce a silly match on stage.
+If a judge asks, a `max_school_distance_km` policy value is a
+one-line addition to `AllocationPolicy`. Backlog, not H32.
+
+### #3 Knapsack "sessions": CONFIRMED
+`need.weeks * need.days.length` is correct. It matches the
+participant-session definition (one participant × one delivered
+session) that `/api/impact` uses, so the Simulator's number and the
+dashboard's number are in the same unit.
+
+### New, for B: Ridgeview's binding constraint reads awkwardly
+The seeded unmatchable need (need-3, Thursday) returns the most
+frequent failing check, which is "time" from the fields:
+`"Fund a fix for: Central Grounds not available all of thu 15:00-17:00"`.
+It's correct, but the pitch story was "no safeguarding-certified
+coach free on Thursdays". Two options, B's call:
+(a) generate `sponsor_request` per check type (e.g. time → "Fund a
+Thursday field booking at Orlando Field (est. R2,800)"), or
+(b) pick the binding constraint from the candidate that got furthest
+through the checks, rather than the most frequent failure.
+The server just relays whatever `binding_constraint` says, so no
+change is needed on A's side either way.

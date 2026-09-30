@@ -1,0 +1,12 @@
+# Render blueprint (optional — Railway just needs the Dockerfile).
+services:
+  - type: web
+    name: rugbygrid
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: AI_MODE
+        value: mock
+      - key: GEMINI_API_KEY
+        sync: false

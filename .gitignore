@@ -1,4 +1,4 @@
-﻿node_modules/
+node_modules/
 dist/
 .DS_Store
 
@@ -6,5 +6,10 @@ dist/
 .env
 .env.local
 *.local
+
+# SQLite
+*.db
+*.db-shm
+*.db-wal
 
 *.log

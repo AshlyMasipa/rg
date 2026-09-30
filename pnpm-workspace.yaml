@@ -1,8 +1,10 @@
-﻿packages:
+packages:
   - "apps/*"
   - "packages/*"
 
+# pnpm 11+ only runs install scripts for packages listed as true here.
 allowBuilds:
-  '@google/genai': set this to true or false
-  esbuild: false
-  protobufjs: set this to true or false
+  better-sqlite3: true      # server: needs its native SQLite binary
+  esbuild: true             # tsx / vitest
+  "@google/genai": false    # ai: no build step needed
+  protobufjs: false         # ai (via @google/genai): postinstall is only a version check

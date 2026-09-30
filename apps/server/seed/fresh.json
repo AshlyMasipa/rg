@@ -1,0 +1,83 @@
+{
+  "_note": "SYNTHETIC hackathon data. No real schools, people or children. IDs and values match packages/engine/fixtures/seed.json so B's tests and the live demo agree. Thabo Secondary's need is NOT here on purpose: it is typed in live during the demo.",
+  "schools": [
+    { "id": "school-thabo", "name": "Thabo Secondary", "lat": -26.202, "lng": 27.998, "synthetic": true },
+    { "id": "school-lerato", "name": "Lerato High", "lat": -26.19, "lng": 28.01, "synthetic": true },
+    { "id": "school-ridgeview", "name": "Ridgeview Combined", "lat": -26.25, "lng": 28.05, "synthetic": true }
+  ],
+  "fields": [
+    {
+      "id": "field-orlando", "name": "Orlando Field", "lat": -26.21, "lng": 27.99,
+      "capacity": 40, "cost_per_session": 350,
+      "availability": [{ "day": "tue", "start": "14:00", "end": "18:00" }]
+    },
+    {
+      "id": "field-central", "name": "Central Grounds", "lat": -26.26, "lng": 28.06,
+      "capacity": 60, "cost_per_session": 500,
+      "availability": [
+        { "day": "tue", "start": "14:00", "end": "18:00" },
+        { "day": "wed", "start": "14:00", "end": "18:00" }
+      ]
+    }
+  ],
+  "coaches": [
+    {
+      "id": "coach-naidoo", "name": "Naidoo", "credentials": ["U16", "safeguarding"],
+      "availability": [{ "day": "tue", "start": "15:00", "end": "17:00" }],
+      "home_lat": -26.205, "home_lng": 27.995, "max_travel_km": 15, "cost_per_session": 300
+    },
+    {
+      "id": "coach-dlamini", "name": "Dlamini", "credentials": ["U16"],
+      "availability": [{ "day": "tue", "start": "15:00", "end": "17:00" }],
+      "home_lat": -26.208, "home_lng": 28.0, "max_travel_km": 15, "cost_per_session": 280
+    },
+    {
+      "id": "coach-mokoena", "name": "Mokoena", "credentials": ["U16", "safeguarding"],
+      "availability": [
+        { "day": "wed", "start": "15:00", "end": "17:00" },
+        { "day": "fri", "start": "15:00", "end": "17:00" }
+      ],
+      "home_lat": -26.22, "home_lng": 28.02, "max_travel_km": 10, "cost_per_session": 300
+    }
+  ],
+  "equipment_kits": [
+    { "id": "kit-1", "description": "8-ball kit", "ball_count": 8, "available": true },
+    { "id": "kit-2", "description": "4-ball kit", "ball_count": 4, "available": true }
+  ],
+  "transport_offers": [
+    {
+      "id": "transport-1", "provider": "Local Minibus", "seats": 20, "cost_per_trip": 200,
+      "availability": [{ "day": "tue", "start": "14:00", "end": "18:00" }]
+    },
+    {
+      "id": "transport-2", "provider": "School Van", "seats": 12, "cost_per_trip": 150,
+      "availability": [{ "day": "thu", "start": "14:00", "end": "18:00" }]
+    }
+  ],
+  "sponsor_budgets": [
+    { "id": "sponsor-women-rugby", "sponsor": "Women in Rugby Fund", "remaining": 20000, "priorities": ["female-participation"] },
+    { "id": "sponsor-general", "sponsor": "General Development Fund", "remaining": 15000, "priorities": [] }
+  ],
+  "community_needs": [
+    {
+      "id": "need-2", "school_id": "school-lerato", "age_group": "U16", "gender": "mixed", "participants": 24,
+      "days": ["wed"], "start_time": "15:00", "end_time": "17:00",
+      "needs": { "field": true, "coach": true, "balls": 4, "transport": false },
+      "weeks": 8, "status": "Unmet", "extraction_confidence": null,
+      "raw_input": "24 under-16s, mixed, Wednesdays 3 to 5. Need a field, a coach and 4 balls.",
+      "last_binding_constraint": null, "created_at": "2026-09-20T09:00:00.000Z"
+    },
+    {
+      "id": "need-3", "school_id": "school-ridgeview", "age_group": "U16", "gender": "boys", "participants": 20,
+      "days": ["thu"], "start_time": "15:00", "end_time": "17:00",
+      "needs": { "field": true, "coach": true, "balls": 4, "transport": false },
+      "weeks": 8, "status": "Unmet", "extraction_confidence": null,
+      "raw_input": "20 U16 boys, Thursdays after school, need a field, coach and 4 balls",
+      "last_binding_constraint": null, "created_at": "2026-09-21T09:00:00.000Z"
+    }
+  ],
+  "opportunity_bundles": [],
+  "assignments": [],
+  "delivery_evidence": [],
+  "audit_events": []
+}

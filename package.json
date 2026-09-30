@@ -1,10 +1,17 @@
-﻿{
+{
   "name": "rugbygrid",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "packageManager": "pnpm@12.8.1",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
+    "dev": "pnpm --filter server dev",
+    "start": "pnpm --filter server start",
+    "seed:build": "pnpm --filter server seed:build",
+    "smoke": "pnpm --filter server smoke",
     "test": "pnpm -r --if-present test",
     "typecheck": "pnpm -r --if-present typecheck"
   },

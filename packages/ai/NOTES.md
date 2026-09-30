@@ -166,3 +166,33 @@ nested setup, but nothing would resolve across packages that way.
 
 Also added a root `.gitignore` (`.env` was not ignored — worth everyone
 checking they have not committed a key) and `.env.example`.
+
+---
+
+## Decisions from A (2026-09-30)
+
+### #6 Where the package lives: RESOLVED, option (a)
+It stays in `packages/ai` as a workspace package. `apps/server` depends
+on `"ai": "workspace:*"`, and `apps/server/src/ai.ts` is the only file
+that imports it. It forwards `emit` to Socket.io, supports the runtime
+AI_MODE switch and adds `GET /api/ai/health` as suggested.
+`apps/server/src/ai/` (A's placeholder mock) has been deleted, so
+there's one AI implementation.
+
+### #7 packages/shared: EXISTS NOW. Two copies kept on purpose, with a guard
+`src/types.ts` was left alone rather than re-pointed at midnight before
+integration. Instead, `apps/server/src/ai.ts` has compile-time checks
+that `ExtractedNeed` and `ExtractionResponse` here match `shared` in
+both directions, so `pnpm typecheck` fails the moment they drift.
+Re-pointing the imports is a safe post-hackathon cleanup.
+`shared`'s `ExtractionSource` now includes `"cache"` to match.
+
+### #8 Root structure: MERGED
+A's root `package.json` / `pnpm-workspace.yaml` / `.gitignore` /
+`.env.example` were merged with yours. `allowBuilds` now has real
+booleans (`@google/genai` and `protobufjs` false, `better-sqlite3` and
+`esbuild` true). pnpm had left `set this to true or false` placeholders
+there. `.env.example` uses your model IDs and 12 s timeout. Note: the
+engine's nested `pnpm-workspace.yaml` / `pnpm-lock.yaml` and all
+committed `node_modules` were still tracked in git. They're removed in
+this merge (see the commit instructions).
