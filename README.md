@@ -38,7 +38,7 @@ All shared shapes live in `packages/shared` as Zod schemas — there is no secon
 - **`packages/shared`** (A): done. Zod schemas, entity/response types and socket events. `apps/server/src/engine.ts` fails the typecheck if these ever drift from the engine's types.
 - **`apps/server`** (A): done. Every endpoint in Section 2.6, Socket.io with paced agent events, status machine + audit log, both seed states, a Dockerfile for Railway/Render. 14 integration tests plus `pnpm smoke`. See `apps/server/README.md` for the full API.
 - **`packages/ai`** (C): done. Extraction + narrative agents with cache → Gemini → rules fallback, 19 tests. Wired into the server via `apps/server/src/ai.ts`. **Read `packages/ai/NOTES.md` #1 first: the free tier is 20 requests/day, so rehearse in `AI_MODE=mock` and get one billing-enabled key for demo day.**
-- **`apps/web`** (D): not yet started. See "For Person D" in `apps/server/README.md` for the Vite proxy setup.
+- **`apps/web`** (D): done. All six screens plus the simulator, role switcher, live map + agent timeline, streamed report. See `apps/web/README.md`. Build it before `pnpm start` so the server serves it on :3000.
 
 ## Getting started
 
@@ -55,4 +55,4 @@ Per-package instructions live in each package's own README where one exists (e.g
 
 ## Demo data
 
-Seed and scripted demo inputs are defined in Section 5 of the implementation plan — rehearse them, don't improvise live input on stage. The seeded unmatchable need (Ridgeview, Thursday) is intentional: it's the "sponsor-ready request" moment in the pitch.
+Seed and scripted demo inputs are defined in Section 5 of the implementation plan — rehearse them, don't improvise live input on stage. The seeded unmatchable need (Ridgeview, Thursday) is intentional: it's the "sponsor-ready request" moment in the pitch.

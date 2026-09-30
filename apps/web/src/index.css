@@ -1,0 +1,82 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "leaflet/dist/leaflet.css";
+
+/* RugbyGrid design tokens. One place to change the look. */
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --color-canvas: #f6f7f4;
+  --color-surface: #ffffff;
+  --color-ink: #13201b;
+  --color-ink-2: #4b5a54;
+  --color-ink-3: #7c8a84;
+  --color-line: #e3e7e2;
+
+  /* brand: field green + kit gold */
+  --color-brand-50: #eaf5f0;
+  --color-brand-100: #cfe8dc;
+  --color-brand-500: #1a7a5a;
+  --color-brand-600: #136649;
+  --color-brand-700: #0d4f3c;
+  --color-brand-900: #07291f;
+  --color-gold: #f5b83d;
+
+  /* status (always shown with a label or icon, never colour alone) */
+  --color-good: #0ca30c;
+  --color-warn: #b97800;
+  --color-warn-bg: #fff4d9;
+  --color-bad: #d03b3b;
+  --color-bad-bg: #fdecec;
+
+  /* agents (timeline chips + map) */
+  --color-agent-extraction: #2a78d6;
+  --color-agent-constraint: #4a3aa7;
+  --color-agent-simulation: #1baf7a;
+  --color-agent-narrative: #eb6834;
+
+  /* chart series (dataviz reference palette, slot 1 + neutral) */
+  --color-series-1: #2a78d6;
+  --color-series-muted: #d9dcd6;
+}
+
+html, body, #root { height: 100%; }
+body {
+  @apply bg-canvas text-ink font-sans antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Leaflet sits under our overlays */
+.leaflet-container { font-family: var(--font-sans); background: #e8ece6; }
+.leaflet-div-icon { background: transparent; border: none; }
+
+.tabular { font-variant-numeric: tabular-nums; }
+
+@keyframes blink { 50% { opacity: 0; } }
+.caret::after { content: "▍"; margin-left: 1px; color: var(--color-brand-500); animation: blink 1s steps(1) infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+/* ---- map markers (SolveMap) ---- */
+.rg-marker { position: relative; width: 34px; height: 34px; border-radius: 999px; display: grid; place-items: center;
+  background: #fff; color: var(--color-ink-2); border: 2px solid var(--color-ink-3); box-shadow: 0 2px 6px rgba(0,0,0,.18);
+  transition: background .25s, color .25s, border-color .25s, transform .25s; }
+.rg-marker svg { width: 18px; height: 18px; }
+.rg-school { border-color: var(--color-brand-700); color: var(--color-brand-700); }
+.rg-field { border-radius: 10px; }
+.rg-selected { transform: scale(1.18); box-shadow: 0 0 0 4px rgba(13,79,60,.25), 0 2px 6px rgba(0,0,0,.2); }
+.rg-active { background: #fff4d9; border-color: #e19a00; color: #8a5a00; }
+.rg-active .rg-ring { position: absolute; inset: -6px; border-radius: inherit; border: 3px solid #f5b83d; animation: rg-pulse 1s ease-out infinite; }
+.rg-pass { background: #e7f7e7; border-color: var(--color-good); color: #0a7a0a; }
+.rg-fail { background: #eceeeb; border-color: #a9b0ab; color: #8b938e; }
+.rg-chosen { background: var(--color-brand-700); border-color: var(--color-gold); color: #fff; transform: scale(1.15);
+  box-shadow: 0 0 0 4px rgba(245,184,61,.45), 0 2px 8px rgba(0,0,0,.25); }
+.rg-x { position: absolute; top: -7px; right: -7px; width: 16px; height: 16px; border-radius: 999px; background: #6b736e;
+  color: #fff; font: 700 12px/16px var(--font-sans); text-align: center; }
+.rg-label { position: absolute; top: 36px; left: 50%; transform: translateX(-50%); white-space: nowrap; font: 600 11px/1.2 var(--font-sans);
+  font-style: normal; color: var(--color-ink); background: rgba(255,255,255,.9); padding: 1px 5px; border-radius: 6px; pointer-events: none; }
+@keyframes rg-pulse { 0% { transform: scale(.85); opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
+.rg-open.rg-idle { background: #fff4d9; border-color: #e19a00; color: #8a5a00; }
+.rg-school .rg-label { top: auto; bottom: 36px; font-weight: 700; color: var(--color-brand-700); }
