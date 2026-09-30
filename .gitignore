@@ -1,0 +1,10 @@
+﻿node_modules/
+dist/
+.DS_Store
+
+# Secrets - NEVER commit. Ship .env.example instead.
+.env
+.env.local
+*.local
+
+*.log
