@@ -49,6 +49,7 @@ body {
 /* Leaflet sits under our overlays */
 .leaflet-container { font-family: var(--font-sans); background: #e8ece6; }
 .leaflet-div-icon { background: transparent; border: none; }
+.leaflet-tile-pane { filter: grayscale(0.7) brightness(1.06) contrast(0.92); }
 
 .tabular { font-variant-numeric: tabular-nums; }
 

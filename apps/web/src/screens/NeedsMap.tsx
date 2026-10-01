@@ -71,14 +71,14 @@ export function NeedsMap() {
         <div className="space-y-3">
           <Card>
             <CardHeader><CardTitle>Requests</CardTitle></CardHeader>
-            <ul className="max-h-[42vh] space-y-1 overflow-y-auto px-2 pb-2 lg:max-h-none">
+            <ul className="max-h-[42vh] space-y-1 overflow-y-auto px-2 pt-1 pb-2 lg:max-h-none">
               {needs.map((n) => (
                 <li key={n.id}>
                   <button
                     onClick={() => select(n.id)}
                     className={cn(
-                      "w-full rounded-xl px-3 py-2.5 text-left transition-colors",
-                      n.id === need?.id ? "bg-brand-50 ring-2 ring-brand-500" : "hover:bg-canvas",
+                      "w-full rounded-xl border-2 px-3 py-2 text-left transition-colors",
+                      n.id === need?.id ? "border-brand-500 bg-brand-50" : "border-transparent hover:bg-canvas",
                     )}
                   >
                     <div className="flex items-center justify-between gap-2">

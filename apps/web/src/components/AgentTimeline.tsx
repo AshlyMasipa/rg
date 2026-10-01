@@ -29,11 +29,16 @@ export function AgentTimeline({
   emptyText?: string;
 }) {
   const rows = (filter ? events.filter(filter) : events).slice(-120);
-  const end = useRef<HTMLDivElement>(null);
-  useEffect(() => { end.current?.scrollIntoView({ block: "nearest", behavior: "smooth" }); }, [rows.length]);
+  const box = useRef<HTMLDivElement>(null);
+  // Scroll only this list to its newest row. (scrollIntoView would also scroll the
+  // whole page, which yanked the screen down on every check while matching.)
+  useEffect(() => {
+    const el = box.current;
+    if (el && el.scrollHeight > el.clientHeight) el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
+  }, [rows.length]);
 
   return (
-    <div className={cn("overflow-y-auto overscroll-contain", className)} aria-live="polite">
+    <div ref={box} className={cn("overflow-y-auto overscroll-contain", className)} aria-live="polite">
       {rows.length === 0 && <p className="px-1 py-6 text-center text-sm text-ink-3">{emptyText}</p>}
       <ul className="space-y-1">
         <AnimatePresence initial={false}>
@@ -61,7 +66,6 @@ export function AgentTimeline({
           ))}
         </AnimatePresence>
       </ul>
-      <div ref={end} />
     </div>
   );
 }

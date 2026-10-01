@@ -46,7 +46,7 @@ function RoleSwitcher() {
   const { role, setRole } = useRole();
   const nav = useNavigate();
   return (
-    <div role="radiogroup" aria-label="Act as" className="flex rounded-xl bg-canvas p-1 ring-1 ring-line">
+    <div role="radiogroup" aria-label="Act as" className="flex shrink-0 rounded-xl bg-canvas p-1 ring-1 ring-line">
       {ROLES.map((r) => (
         <button
           key={r.id}
@@ -55,12 +55,12 @@ function RoleSwitcher() {
           title={r.who}
           onClick={() => { setRole(r.id); nav(HOME[r.id]); }}
           className={cn(
-            "relative rounded-lg px-2.5 py-1 text-xs font-semibold transition-colors sm:text-[13px]",
+            "relative whitespace-nowrap rounded-lg px-2.5 py-1 text-xs font-semibold transition-colors sm:text-[13px]",
             role === r.id ? "text-white" : "text-ink-2 hover:text-ink",
           )}
         >
           {role === r.id && <motion.span layoutId="role-pill" className="absolute inset-0 rounded-lg bg-brand-700" transition={{ type: "spring", stiffness: 500, damping: 35 }} />}
-          <span className="relative"><span className="sm:hidden">{SHORT[r.id]}</span><span className="hidden sm:inline">{r.label}</span></span>
+          <span className="relative"><span className="xl:hidden">{SHORT[r.id]}</span><span className="hidden xl:inline">{r.label}</span></span>
         </button>
       ))}
     </div>
@@ -165,14 +165,14 @@ export function AppShell({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-full flex-col">
       <header className="sticky top-0 z-[1100] border-b border-line bg-surface/90 backdrop-blur">
-        <div className={cn("mx-auto flex h-14 items-center gap-3 px-4", wide ? "max-w-[1400px]" : "max-w-3xl")}>
+        <div className="mx-auto flex h-14 max-w-[1400px] items-center gap-3 px-4">
           <Logo />
-          <nav className="ml-4 hidden items-center gap-1 md:flex" aria-label="Main">
+          <nav className="ml-4 hidden min-w-0 items-center gap-1 lg:flex" aria-label="Main">
             {items.map((i) => (
               <NavLink
                 key={i.to} to={i.to}
                 className={({ isActive }) => cn(
-                  "flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium [&_svg]:size-4",
+                  "flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-lg px-3 py-1.5 text-sm font-medium [&_svg]:size-4",
                   isActive ? "bg-brand-50 text-brand-700" : "text-ink-2 hover:text-ink",
                 )}
               >
@@ -180,9 +180,9 @@ export function AppShell({ children }: { children: ReactNode }) {
               </NavLink>
             ))}
           </nav>
-          <div className="ml-auto flex items-center gap-2">
+          <div className="ml-auto flex shrink-0 items-center gap-2">
             <span
-              className={cn("hidden items-center gap-1 text-xs font-medium sm:flex", connected ? "text-good" : "text-bad")}
+              className={cn("hidden items-center gap-1 whitespace-nowrap text-xs font-medium sm:flex", connected ? "text-good" : "text-bad")}
               title={connected ? "Live updates connected" : "Reconnecting…"}
             >
               {connected ? <Wifi className="size-4" /> : <WifiOff className="size-4" />}
@@ -199,7 +199,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         )}
       </header>
 
-      <main key={role} className={cn("mx-auto w-full flex-1 px-4 pt-4 pb-24 md:pb-10", wide ? "max-w-[1400px]" : "max-w-3xl")}>
+      <main key={role} className={cn("mx-auto w-full flex-1 px-4 pt-4 pb-24 lg:pb-10", wide ? "max-w-[1400px]" : "max-w-3xl")}>
         {children}
         <footer className="mt-10 flex flex-wrap items-center justify-center gap-2 text-center text-[11px] text-ink-3">
           <SyntheticBadge />
@@ -208,7 +208,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       </main>
 
       {/* phone tab bar */}
-      <nav className="fixed inset-x-0 bottom-0 z-[1100] border-t border-line bg-surface/95 pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden" aria-label="Main">
+      <nav className="fixed inset-x-0 bottom-0 z-[1100] border-t border-line bg-surface/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden" aria-label="Main">
         <div className="mx-auto flex max-w-md justify-around">
           {items.map((i) => {
             const active = loc.pathname.startsWith(i.to);

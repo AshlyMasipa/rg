@@ -101,8 +101,9 @@ export function SolveMap({
     <div className={className}>
       <MapContainer center={[-26.22, 28.02]} zoom={12} scrollWheelZoom className="h-full w-full rounded-2xl" attributionControl>
         <TileLayer
-          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; CARTO'
+           url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+          maxZoom={19}
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
         <FitBounds points={points} />
         <Resizer />
